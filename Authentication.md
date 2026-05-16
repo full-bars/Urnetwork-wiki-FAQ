@@ -4,7 +4,7 @@
 Authentication in URnetwork is handled through the **Account Dashboard** at [app.ur.network/account](https://app.ur.network/account).
 
 * **Authentication Code:**
-    * **Validity:** Short-lived (expires in 5 minutes).
+    * **Validity:** Short-lived (expires in 5 minutes by default unless specified otherwise during creation).
     * **Use Case:** Initial setup of a new provider node.
     * **Behavior:** Single-use; each device needs a fresh code.
 * **Client JWT Token:**
