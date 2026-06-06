@@ -1,25 +1,26 @@
 # Country multipliers
 
-### How Multipliers Work
-Countries with fewer than **100 provider nodes** receive multipliers to incentivize deployment in those underserved regions.
-* **Assessment:** Multiplier values are assessed **weekly at payout**.
-* **Scaling:** The multiplier scales down as more providers join that country.
-* **Max Value:** The highest multiplier is typically **10x**.
-* **Incentive:** The first 25 providers in any underserved country earn special incentive points even if they receive zero user traffic (the "pioneer bonus").
+### What are Country Multipliers?
+To ensure the network is available everywhere, the protocol offers increased rewards for providers in "underserved" regions. These multipliers apply to both **USDC earnings** and **Reliability Points**.
 
-### Determining Your Multiplier
-* **IP-Based:** The multiplier is based on where your **IP address** is geographically located, not your physical location. A VPS in Finland earns the Finland multiplier.
-* **Visibility:** You can see active multipliers on the [Client Manager](https://app.ur.network/account) or the Providers page.
-* **Low Multipliers:** If a country has a multiplier of 1x, it is considered "stable" or "popular" and the multiplier does not show in the UI.
+### How are they calculated?
+Unlike most VPNs with static rates, URnetwork uses a **Dynamic Multiplier** system. 
+* **Technical Logic:** The protocol compares the `netReliabilityWeight` of a country against a global target. 
+* **Supply & Demand:** If a country has very few providers but high potential demand, the multiplier automatically increases (up to the `MaxCountryReliabilityMultiplier` defined in the server config).
+* **Saturation:** As more providers join a high-multiplier region, the multiplier will slowly decrease to balance the network.
 
-### Strategic Deployment
-* **USA:** High demand, but very high competition (no multiplier).
-* **Vietnam:** Many providers but very low demand; often results in poor earnings despite being popular for nodes.
-* **Underserved Regions:** Nordic countries, parts of Europe, and certain Asian countries often have active multipliers and moderate demand, making them highly efficient for providing.
+### How to check multipliers?
+Multipliers are updated periodically by the backend. 
+1. **Dashboard:** High-multiplier regions are often highlighted or listed in community updates.
+2. **Discord:** Check the `#announcements` channel for the latest "Boosted Regions."
 
-### Multiplier Scope
-Country multipliers apply to:
-* **Reliability Points**
-* **USDC Earnings** (Confirmed by staff)
+### Payout Impact
+If you are in a country with a **2.0x multiplier**:
+* You earn **2x more Points** for every hour of uptime.
+* Your share of the weekly **USDC pool** is effectively doubled compared to a provider with the same uptime in a 1.0x region.
 
-> **Staff Advice:** Locations without a multiplier are usually more popular, meaning you earn more (due to demand) and less (due to competition) at the same time. The multiplier is the network's way of balancing coverage.
+### Stability Requirement
+Multipliers only matter if your node is stable. A 10x multiplier on a node with 50% uptime will still earn less than a 1x region node with 99.9% uptime.
+
+---
+*Technical Note: Multipliers are calculated in the `server/model/network_client_reliability_model.go` file using an algorithmic encoding of network health.*
