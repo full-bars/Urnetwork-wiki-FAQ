@@ -2,7 +2,7 @@
 
 Answers distilled from the URnetwork Discord community — covering setup, earning, troubleshooting, and more.
 
-**Last Updated:** May 2026 (Sourced from #general & #support)
+**Last Updated:** June 2026 (Sourced from #general & #support)
 
 ## Welcome to the URnetwork Community Wiki
 
@@ -12,12 +12,14 @@ This wiki contains information gathered from the community to help you get start
 
 * **[[What is URnetwork?]]** - Learn about the decentralized P2P VPN and the $UR token.
 * **[[Installation & setup]]** - Get your node up and running on the current version (2026.3.23+).
+* **[[Bandwidth limits]]** - Explaining the 30-hour rolling window and tiers.
 * **[[USDC earnings]]** - Understand the contract-based payout system.
 * **[[Points & airdrop]]** - Information on the $UR token distribution.
 * **[[Common errors]]** - Quick fixes for frequent infrastructure and setup issues.
 
 ### Latest Network News
 * **Provider Version 2026.3.23:** Logging has been streamlined. Detailed fragment success/error logs are now hidden by default to reduce noise.
+* **Bandwidth Refresh Logic:** The network uses a 30-hour voucher system with a 6-hour overlap, which is why your dashboard might show "double" data (up to 1.17 TiB for supporters) during certain hours.
 * **$UR Airdrop:** Points accumulated from providing and referrals will convert to the $UR token on Solana.
 * **Reliability Multiplier:** Providers achieving >99.9% reliability for a block now earn a specific bonus multiplier.
 
