@@ -27,7 +27,9 @@ instance_id: 019e2d67-5a73-4bb3-6661-df9b5c595003
 [net][s]select: proxy[13] (5.6.7.8:1081) [normal] success=2221 error=223 clients=5
 ```
 
-Logged at V(2) in stock (hidden at default verbosity; visible with `-vv`). Shows the provider selecting a route for a client session. Typically won't be visible unless you enable verbose logging.
+Logged at V(2) in stock. Shows the provider selecting a routing strategy for a client session.
+
+**Visibility note:** Due to the docopt/glog verbosity integration issue (see [Verbosity Levels](#verbosity-levels) below), V(2) messages are effectively unreachable in the stock binary. If you run a custom build or fork that promotes these to INFO, you'll see one line per route, per session.
 
 **What to watch for:**
 - `clients=N` shows the number of active multiplexed sessions on that route.
@@ -159,14 +161,22 @@ Fires every 60 seconds. Shows the internal buffer pool health.
 
 ### Verbosity Levels
 
-The `-v` flag controls log verbosity:
+The `-v` flag is documented in the CLI help to control log verbosity:
 
-| Flag | Level | What you see |
+| Flag | Intended Level | Messages at that level |
 |---|---|---|
 | *(none)* | 0 | `[contract]`, `[t]auth error`, `[r]drop` (rate-limited), errors |
 | `-v` | 1 | Contract lifecycle, TLS session events, ack tracking |
 | `-vv` | 2 | `[net][s]select`, per-packet events, full transport tracing |
 
+**Caveat:** The stock provider binary parses `-v` flags via docopt, but docopt is **not connected to glog's verbosity system**. The `flag.Set("v", "0")` call in `initGlog()` hardcodes verbosity to 0 at startup. As a result, V(1) and V(2) messages are effectively unreachable through CLI flags in the stock binary.
+
+This is a known limitation. Workarounds include:
+- Using `GLOG_v=1` or `GLOG_v=2` as an environment variable (if glog respects it)
+- Running a custom build that promotes key messages to INFO level
+
+For example, the `[net][s]select` line is internal diagnostic info at V(2). In the stock provider you won't see it at all, even with `-vv`. Some community-maintained forks promote it to unconditional INFO to make connection-level routing visible by default.
+
 ---
 
-*Note: This reference covers the stock URnetwork provider. Custom forks may add additional log patterns.*
+*Note: This reference covers the stock URnetwork provider. Custom forks may add additional log patterns and fix verbosity handling.*
