@@ -8,6 +8,7 @@ This repository contains the community-sourced Wiki and FAQ for URnetwork, moder
 * **[What is URnetwork?](What-is-URnetwork.md)** - Decentralized P2P VPN & the $UR token.
 * **[Installation & Setup](Installation-&-setup.md)** - Guide for current provider versions (2026.3.23+).
 * **[Authentication](Authentication.md)** - Auth Codes vs. JWT Tokens.
+* **[Bandwidth Limits](Bandwidth-limits.md)** - Explaining the rolling 30-hour quota and tiers.
 
 ### Running a Node
 * **[Multiple Nodes](Multiple-nodes.md)** - Density and geo-optimization.
