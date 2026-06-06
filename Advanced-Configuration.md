@@ -1,11 +1,46 @@
 # Advanced Configuration
 
-The URnetwork provider supports several advanced settings for monitoring and stability. For users of the **high-performance fork (v3.23-fix)**, additional tuning options are available.
+The URnetwork provider supports several advanced settings for monitoring, stability, and deployment automation.
 
-### Standard Configuration
+### Environment Variables
+
+#### Authentication (Docker/CI)
+* **`URNETWORK_AUTH_CODE`**: Pass a fresh auth code for first-time authentication on headless servers.
+* **`URNETWORK_JWT`**: Pass a persistent JWT token for long-term deployments (avoids needing a fresh code every 5 minutes).
+
+#### Network & Identity
 * **`URNETWORK_NODE_NAME`**: Set a custom label for your device that will appear in the web dashboard.
-* **`URNETWORK_PUBLIC_IP`**: Manually specify your public IP if the automatic detection is failing behind complex NATs.
-* **`urnetwork provide --help`**: Always check the local CLI help for the full list of supported flags in your specific version.
+* **`URNETWORK_PUBLIC_IP`**: Manually specify your public IP if automatic detection is failing behind complex NATs.
+
+### CLI Flags
+
+The provider binary (`urnetwork provide`) supports several run-time flags:
+
+| Flag | Default | Description |
+| :--- | :--- | :--- |
+| `--api_url` | `https://api.bringyour.com` | Custom API server URL |
+| `--connect_url` | `wss://connect.bringyour.com` | Custom WebSocket connect URL |
+| `--port` | `0` (random) | Status server port |
+| `--max-memory` | none | Soft memory limit (supports `b`, `kib`, `mib`, `gib` suffixes) |
+| `-v` | none | Verbose logging (repeat for more detail: `-vv`) |
+| `-f` | none | Force overwrite existing JWT during auth |
+
+Use `urnetwork provide --help` to see the full list of supported flags for your installed version.
+
+### Systemd Service Management (Linux)
+
+When installed via the official script, the provider runs as a systemd user service:
+
+```bash
+systemctl --user start urnetwork    # Start
+systemctl --user stop urnetwork     # Stop
+systemctl --user enable urnetwork   # Start on login
+systemctl --user disable urnetwork  # Disable start on login
+```
+
+### Memory Limits
+
+The `--max-memory` flag applies a soft memory limit. When the provider's memory usage approaches the limit, it reduces buffer sizes and throttles new connections to stay within bounds. This is useful for low-memory devices like Raspberry Pi or cheap VPS instances.
 
 ---
 

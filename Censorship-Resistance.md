@@ -5,12 +5,34 @@ URnetwork is engineered to function in heavily restricted environments (e.g., th
 ### Current Network Features
 
 #### Q: How does URnetwork prevent DNS hijacking or poisoning?
-The client strictly enforces **DNS-over-HTTPS (DoH)** for all lookups. By default, it resolves via Cloudflare (`1.1.1.1`) or Google (`8.8.8.8`) over an encrypted tunnel. Because the lookups are encrypted, local ISP firewalls cannot see or alter the results.
+The client strictly enforces **DNS-over-HTTPS (DoH)** for all lookups. By default, it resolves via Cloudflare (`https://1.1.1.1/dns-query`) over an encrypted tunnel. Because the lookups are encrypted, local ISP firewalls cannot see or alter the results.
 * **Source:** `connect/net_http_doh.go`
 
 #### Q: What are "Extenders" and how do they work?
-For environments where the URnetwork protocol is identified and blocked, the system uses the `UREXTENDER1` protocol. It "bounces" traffic through an intermediary node using **SNI Spoofing**. This makes the VPN traffic look like harmless web browsing to a common domain (like a CDN).
-* **Source:** `connect/net_extender.go`
+For environments where the URnetwork protocol is identified and blocked, the system uses the extender protocol (`ExtenderConnectModeTcpTls`). It "bounces" traffic through an intermediary node using **SNI Spoofing**, making the VPN traffic look like harmless web browsing to common services.
+
+**How extenders work:**
+1. The extender profile specifies a `ConnectMode`, `ServerName`, and `Port`
+2. The client connects via standard TLS 1.3, presenting the server name as SNI
+3. Optional `Fragment` and `Reorder` flags can be set to evade DPI fingerprinting
+4. The connection mimics normal HTTPS traffic to common destinations
+
+**Default extender personas (ports used):**
+| Port | Service | Type |
+| :--- | :--- | :--- |
+| 443 | HTTPS | Web browsing |
+| 853 | DNS over TLS | Encrypted DNS |
+| 636 | LDAPS | Directory services |
+| 993 | IMAPS | Email |
+| 995 | POP3S | Email |
+| 465 | SMTPS | Email |
+| 2376 | Docker | Container management |
+| 3269 | LDAPS (GC) | Directory services |
+| 4460 | NTS | Network Time Security |
+
+The `EnumerateExtenderProfiles()` function randomly selects from service and mail personas, with randomized fragment/reorder flags, making traffic patterns unpredictable to DPI systems.
+
+* **Source:** `connect/net_extender.go`, `connect/net_extender_profiles.go`
 
 ---
 

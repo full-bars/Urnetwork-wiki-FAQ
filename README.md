@@ -13,6 +13,7 @@ This repository contains the community-sourced Wiki and FAQ for URnetwork, moder
 ### Architecture & Advanced
 * **[Architecture: Multi-IP](Architecture-Multi-IP.md)** - How the Optimistic Auction model works.
 * **[Advanced Configuration](Advanced-Configuration.md)** - Tuning profiles and performance environment variables.
+* **[Economic Model](Economic-Model.md)** - How revenue flows and providers get paid.
 
 ### Running a Node
 * **[Multiple Nodes](Multiple-nodes.md)** - Density and geo-optimization.

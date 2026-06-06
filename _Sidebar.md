@@ -9,6 +9,7 @@
 * [[Architecture: Multi-IP]]
 * [[Protocol Overview]]
 * [[Advanced Configuration]]
+* [[Economic Model]]
 * [[Censorship Resistance]]
 
 ### Running a node
@@ -31,6 +32,7 @@
 
 ### Resources
 * [[Useful links]]
+* [[FAQ: Stock Features]]
 
 ---
 *Built from #general and #support Discord exports. Community-sourced answers, not official docs.*
