@@ -1,8 +1,18 @@
 # Advanced Configuration
 
-For power users and providers running on dedicated hardware, URnetwork supports several environment variables to tune performance and resource usage.
+The URnetwork provider supports several advanced settings for monitoring and stability. For users of the **high-performance fork (v3.23-fix)**, additional tuning options are available.
 
-### 1. Performance Profiles
+### Standard Configuration
+* **`URNETWORK_NODE_NAME`**: Set a custom label for your device that will appear in the web dashboard.
+* **`URNETWORK_PUBLIC_IP`**: Manually specify your public IP if the automatic detection is failing behind complex NATs.
+* **`urnetwork provide --help`**: Always check the local CLI help for the full list of supported flags in your specific version.
+
+---
+
+### High-Performance Fork (v3.23-fix) Features
+The [v3.23-fix fork](https://github.com/full-bars/urnetwork-3.23-fix) introduces several optimizations for power users and high-volume nodes.
+
+#### 1. Performance Profiles
 Use the `URNETWORK_PROFILE` variable to adapt the provider to your hardware:
 
 | Profile | Description |
@@ -13,19 +23,11 @@ Use the `URNETWORK_PROFILE` variable to adapt the provider to your hardware:
 | `turbo-v4` | Expanded message pools and deeper buffers for 1Gbps+ connections. |
 | `turbo-v8` | Maximum performance settings for multi-gigabit infrastructure. |
 
-### 2. Logging & Monitoring
-* `URNETWORK_RAMLOGS=1`: Enables high-speed logging to RAM. Reduces disk I/O, which is critical for extending the lifespan of SD cards (Raspberry Pi).
-* `URNETWORK_NODE_NAME`: Set a custom label for your device that will appear in the web dashboard.
-* `URNETWORK_PUBLIC_IP`: Manually specify your public IP if the automatic detection is failing behind complex NATs.
+#### 2. Logging & Monitoring
+* **`URNETWORK_RAMLOGS=1`**: Enables high-speed logging to RAM. This is exclusive to the fix-fork and critical for extending the lifespan of SD cards on Raspberry Pi nodes.
 
-### 3. Docker Optimization
-When running in Docker, it is recommended to use the optimized community image:
-`ghcr.io/full-bars/urnetwork-3.23-fix`
-
-**Key Features of Optimized Images:**
+#### 3. Optimized Docker Images
+When running in Docker, the optimized image (`ghcr.io/full-bars/urnetwork-3.23-fix`) includes:
 * **vnStat Integration:** Real-time traffic monitoring inside the container.
-* **Multi-Arch Support:** Native builds for both `AMD64` (PCs) and `ARM64` (Raspberry Pi/Mac).
 * **Hardened Buffers:** 4x deeper IP buffer depths to prevent packet drops during traffic bursts.
-
----
-*Tip: Always use `urnetwork provide --help` to see the full list of CLI flags supported by your current version.*
+* **Multi-Arch Support:** Native builds for both `AMD64` and `ARM64`.
