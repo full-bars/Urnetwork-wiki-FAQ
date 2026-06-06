@@ -13,11 +13,11 @@ Instead of waiting for a slow \"handshake\" before sending data, URnetwork often
 * **The Winner:** Whichever node returns the first acknowledgment (ACK) \"wins\" the flow.
 * **Impact:** This ensures you always get the fastest possible route without the user ever noticing the selection process.
 
-### 3. Standards & Protocols
-URnetwork is built to be resilient across all network conditions:
-* **WebRTC:** Used for high-performance peer-to-peer (P2P) connections.
-* **STUN/TURN:** Fallback mechanisms to ensure the VPN works even behind strict firewalls or mobile carrier NATs.
-* **Legacy Support:** The protocol is intentionally compatible with older standards to ensure availability in regions with restricted internet infrastructure.
+### 3. Multi-Hop and Relay Status
+The core protocol supports a `MultiHopId` and a `MaxMultihopLength` of 8, allowing packets to bounce through multiple intermediaries (like Tor's onion routing).
+* **Current Implementation:** As of June 2026, the network is in a **Semi-Decentralized** state. 
+* **Relay Nodes:** While the protocol supports it, currently only the **central server exchange** implements the `forward()` callback. Community-run provider nodes act strictly as exit nodes for now.
+* **Roadmap:** Future versions of the provider are expected to implement P2P forwarding, enabling full "Garlic" or "Onion" style multi-hop across the community network.
 
 ---
 *Technical Insight: This architecture is why URnetwork is often described as a \"Marketplace\" rather than a simple VPN service.*
