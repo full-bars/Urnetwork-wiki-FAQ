@@ -3,6 +3,7 @@
 * [[Installation & setup]]
 * [[Authentication]]
 * [[Bandwidth limits]]
+* [[FAQ Stock Features]]
 
 ### Architecture & Advanced
 * [[Architecture: Multi-IP]]
