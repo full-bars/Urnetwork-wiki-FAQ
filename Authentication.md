@@ -4,12 +4,12 @@
 Authentication in URnetwork is handled through the **Account Dashboard** at [app.ur.network/account](https://app.ur.network/account).
 
 * **Authentication Code:**
-    * **Validity:** Short-lived (expires in 5 minutes by default unless specified otherwise during creation).
-    * **Use Case:** Initial setup of a new provider node.
+    * **Validity:** Short-lived (expires in 5 minutes by default).
+    * **Use Case:** Initial setup of a new provider node or client.
     * **Behavior:** Single-use; each device needs a fresh code.
 * **Client JWT Token:**
-    * **Validity:** Persistent (Static).
-    * **Use Case:** For Docker deployments or running multiple instances.
+    * **Validity:** Long-term persistent (~30 days).
+    * **Use Case:** For Docker deployments, headless servers, or running multiple instances.
     * **Behavior:** Does not expire every 5 minutes. Useful for stable, long-term deployments.
 
 ### SSO & Login Limitations
@@ -24,7 +24,12 @@ urnetwork auth
 ```
 You will be prompted to enter your Auth Code, which the binary will then exchange for a session token (JWT).
 
-### Error: "User auth attempts exceeded limits"
+#### Environment Variables (Recommended for Docker/CI)
+For automated or containerized setups, use environment variables to avoid interactive prompts:
+* `URNETWORK_AUTH_CODE`: Pass a fresh 5-minute code for the first boot.
+* `URNETWORK_JWT`: Pass a persistent token for long-term deployments.
+
+### Error: \"User auth attempts exceeded limits\"
 This indicates you are being rate-limited. This usually happens when attempting to authenticate multiple devices in very rapid succession.
 * **Fix:** Wait 15–20 minutes. Authenticate your devices one at a time with a short delay between them.
 
