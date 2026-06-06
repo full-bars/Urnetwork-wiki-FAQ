@@ -77,7 +77,13 @@ func DefaultEgressSecurityPolicy() SecurityPolicy {
 }
 ```
 
-## 8. Where can I get more support?
+## 8. Is URnetwork protected against MITM attacks and Post-Quantum threats?
+
+Yes. URnetwork is introducing **Post-Quantum Encryption (PQE)** features that utilize a client key model similar to the Signal protocol. 
+
+When you use the network, client keys are auto-generated and saved in your SDK and the provider. While the Network Operator (NO) handles the distribution of public keys, setting `Encrypt=true` ensures these keys are used to strictly verify both communicating parties. Because the client and provider verify each other's public keys directly, it becomes mathematically impossible for even the Network Operator to Man-in-the-Middle (MitM) the TLS connection between them.
+
+## 9. Where can I get more support?
 
 For additional help, technical troubleshooting, or simply to connect with other providers and users, join our community on Discord:
 
