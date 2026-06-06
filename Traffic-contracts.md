@@ -1,7 +1,7 @@
 # Traffic contracts
 
 ### What is a traffic contract?
-The core of URnetwork's economy is the **Contract**. When a client needs to route data, the network auctions the request among available providers. The winning node gets a "contract" to carry that specific traffic and earns rewards.
+The core of URnetwork's economy is the **Contract**. When a client needs to route data, the network auctions the request among available providers. The winning node gets a \"contract\" to carry that specific traffic and earns rewards.
 * **Selection Criteria:** Your IP's reputation, reliability score (>99.9% is ideal), latency, and country multiplier all influence whether you win a contract.
 * **Earnings:** You are paid for **successful contracts**, not merely for having your computer on or for moving non-billable system data.
 
@@ -20,9 +20,7 @@ This log message indicates a matchmaking or infrastructure issue on the URnetwor
 Your OS network monitor will always show more data usage than the URnetwork dashboard.
 * **Non-Billable Traffic:** The provider binary communicates with the URnetwork API (e.g., `api.bringyour.com`) for signaling, status updates, and announcement. This data keeps your node connected but is not paid.
 * **Contract Capacity:** Each contract starts with an initial data allocation (`InitialContractTransferByteCount`).
-    * **Upstream Default:** 16 KiB (causes high signaling overhead).
-    * **Optimized Fork (v3.23-fix) Baseline:** 256 KiB.
-    * **High-Performance (Turbo V4/V8):** **2 MiB**.
-    * **Impact:** High-performance modes use a 2 MiB initial allocation to eliminate the "signaling storm" caused by constant renegotiation on fast connections. This allows for much smoother throughput and higher effective earnings.
+    * **Upstream Default:** 16 KiB.
+    * **Impact:** The 16 KiB default is a known bottleneck that can cause high signaling overhead on very fast connections. Advanced users and custom forks sometimes increase this to improve performance, but 16 KiB remains the stock standard for the network.
 
 > **Staff Tip:** As long as you have more \"success\" than \"error\" messages in your logs (or high uptime on the graph), your node is performing correctly. Lower contract win rates are typically market-driven.
