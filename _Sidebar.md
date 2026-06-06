@@ -2,6 +2,11 @@
 * [[What is URnetwork?]]
 * [[Installation & setup]]
 * [[Authentication]]
+* [[Bandwidth limits]]
+
+### Architecture & Advanced
+* [[Architecture: Multi-IP]]
+* [[Advanced Configuration]]
 
 ### Running a node
 * [[Multiple nodes]]
