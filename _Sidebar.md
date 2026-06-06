@@ -3,11 +3,13 @@
 * [[Installation & setup]]
 * [[Authentication]]
 * [[Bandwidth limits]]
-* [[FAQ Stock Features]]
+* [[Glossary]]
 
 ### Architecture & Advanced
 * [[Architecture: Multi-IP]]
+* [[Protocol Overview]]
 * [[Advanced Configuration]]
+* [[Censorship Resistance]]
 
 ### Running a node
 * [[Multiple nodes]]
