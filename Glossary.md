@@ -28,9 +28,15 @@ To help you navigate the URnetwork technical documentation and community discuss
 * **ICE (Interactive Connectivity Establishment):** A framework used by WebRTC to find the best path between two peers, using STUN servers to discover public IPs.
 * **STUN (Session Traversal Utilities for NAT):** A protocol used to discover your public IP address and port mapping behind a NAT.
 
-### Error & Status Terms
-* **NSSF (No Successful Strategy Found):** A log message indicating the provider could not successfully announce itself to the network or establish a contract. Usually a temporary API or infrastructure issue.
-* **Contract Creation Error (`exit could not create contract`):** Indicates matchmaking failed to assign a contract. Usually a network-wide infrastructure issue, not a local problem.
+### Log Message Tag Terms
+These tag prefixes appear in provider logs. See [[Log Reference]] for a full guide.
+
+* **`[net][s]select`** — Serial connection selection. Logged when the provider selects a route for a client. Each line shows the proxy/destination, strategy mode (`normal`, `fragment`, `reorder`), success/error counts, and active client count.
+* **`[t]auth error`** — Transport authentication failure. The provider could not authenticate a connection to the platform. Rate-limited to 1 per minute.
+* **`[s]`** — Send sequence lifecycle. Includes contract creation, session exits, and ack tracking.
+* **`[r]`** — Receive sequence lifecycle. Includes packet drops and session exits.
+* **`[contract]`** — Contract management events.
+* **`[tls]`** — Per-peer TLS encryption session events.
 
 ### Transport Protocol Terms
 * **Transport Mode:** The protocol layer used for data transfer. Modes include `h3dnspump`, `h3dns`, `h3` (QUIC/HTTP-3), and `h1` (HTTP/1.1 TCP). Source: `transport.go`

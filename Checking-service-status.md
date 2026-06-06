@@ -7,7 +7,7 @@ Check [status.ur.io](https://status.ur.io) for the official status of the networ
 
 ### Community & Third-Party Monitors
 * **Uptime Monitor:** [uptime.urnetwork.nohost.me/status/urnetwork-api](https://uptime.urnetwork.nohost.me/status/urnetwork-api)
-* **Discord Community:** The `#support` and `#general` channels in the URnetwork Discord are the fastest ways to confirm global outages. If multiple users report "NSSF" (No Successful Strategy Found) or "payout delays," it is likely a network-wide issue.
+* **Discord Community:** The `#support` and `#general` channels in the URnetwork Discord are the fastest ways to confirm global outages. If multiple users report auth errors, contract failures, or payout delays, it is likely a network-wide issue.
 
 ### Payout Status
 If payouts are delayed, check the announcements in Discord. The team is small and occasionally manages the payout wallet manually, which can lead to delays during network upgrades or maintenance.

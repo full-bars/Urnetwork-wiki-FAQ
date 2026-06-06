@@ -10,8 +10,8 @@
 | `User auth attempts exceeded limits` | You are being rate-limited for too many authentication attempts in a short time. **Fix:** Wait 15–20 minutes and try again one device at a time. |
 
 ### Monitoring Best Practices
-* **success:error Ratio:** In older versions, this was the primary health check. In versions **2026.3.23+**, these logs are hidden. 
 * **Reliability Graph:** Use the dashboard graph to confirm 24/7 uptime. If the graph is mostly red/yellow, your device is being throttled or disconnected by the OS (common on mobile).
-* **NSSF (No Successful Strategy Found):** If this spams for more than a few minutes, it usually indicates a temporary API lag or outage.
+* **Rate-limited errors:** Some log patterns (`[t]auth error`, `[r]drop`, `[net][s]select` errors) are rate-limited to 1 per minute. A suppressed count like `(34 suppressed)` is normal and reduces log noise during transient issues.
+* **Contract backs off:** Seeing `[contract]oob err` with a backoff message means the platform isn't responding to contract requests. The provider will retry automatically.
 
-> **Staff Tip:** As long as you see occasional traffic movements or your reliability score remains high, your node is functioning. Infrastructure-related errors (like contract creation failures) are managed by the dev team and do not require user intervention.
+> **Staff Tip:** As long as you see occasional traffic movements or your reliability score remains high, your node is functioning. See the [[Log Reference]] for a full guide to interpreting provider log messages.

@@ -27,6 +27,7 @@
 
 ### Troubleshooting
 * [[Common errors]]
+* [[Log Reference]]
 * [[Connectivity issues]]
 * [[Checking service status]]
 
