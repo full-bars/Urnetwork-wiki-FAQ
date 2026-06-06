@@ -17,9 +17,15 @@ This is the most effective way to scale your earnings.
 ### Client ID Management
 Each node must have its own unique **Client ID**. When using the CLI, this is handled automatically. For Docker deployments, ensure each container has a unique identifier or is using a fresh JWT.
 
-### Hardware Limitations
-While you can run many nodes, keep an eye on your hardware:
-* **CPU/RAM:** Each node has a baseline overhead. Use the `lowmem` profile for high-density setups on weak hardware.
-* **Port Conflict:** The provider uses UPnP/NAT-PMP to manage ports. Multiple nodes on one machine will automatically coordinate different internal ports.
+### Hardware & Port Management
+* **Resource Usage:** Each node has a baseline overhead. For users on limited hardware (Raspberry Pi/Low-end VPS), it is recommended to monitor CPU and RAM closely when scaling node count.
+* **Port Management:** The provider uses UPnP/NAT-PMP to attempt to manage ports automatically with your router. 
+
+---
+
+### High-Performance Fork (v3.23-fix)
+If you are running many nodes on a single machine or on very weak hardware, the [v3.23-fix fork](https://github.com/full-bars/urnetwork-3.23-fix) provides specific enhancements:
+* **`lowmem` Profile:** A specialized mode that reduces buffer sizes and enforces strict memory limits for high-density setups.
+* **Automatic Port Coordination:** Enhanced logic to ensure multiple nodes on one machine coordinate different internal ports without conflict.
 
 > **Staff Tip:** The healthiest way to grow the network is "one node per household." Mass-deploying hundreds of nodes on a single data center IP often leads to poor reputation scores and fewer won contracts.
